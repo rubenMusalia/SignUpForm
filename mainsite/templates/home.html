@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock title %}
+
+
+
+{% block content %}
+<br>
+<div class="ui container">
+    <div class="ui segment">
+        <div class="jumbotron">
+            {% if user.is_authenticated %}
+            <p>Howdy {{ user.username }}!</p>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}

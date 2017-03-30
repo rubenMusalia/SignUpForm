@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} Base {% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.css" />
+    <script src="https://use.fontawesome.com/9e69d7161e.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'votelog/votelog.css' %}">
+</head>
+<body>
+<div class="ui attached stackable menu ui inverted ">
+  <div class="ui container">
+      {% if user.is_authenticated %}
+        <a class="item" href="{% url 'slauson:homepage' %}"><i class="home icon ui orange"></i> Home </a>
+        <a class="item" href="{% url 'slauson:profile' %}"><i class="user icon ui orange"></i></i>Profile</a>
+        <a class="item" href="{% url 'slauson:detail' slug=user.username %}"><i class="grid layout icon ui orange"></i> Detail</a>
+        <a class="item" href="{% url 'slauson:logout' %}"><i class="sign out icon ui orange"></i></i> Log Out</a>
+      {% endif %}
+
+      {% if request.user.is_active and request.user.is_staff %}
+        <a class="item" href=""><i class="users icon ui orange"></i> Staff</a>
+      {% endif %}
+
+      {% if request.user.is_superuser %}
+        <a class="item" href="{% url 'slauson:list' %}"><i class="list layout icon ui orange"></i> List</a>
+        <a class="item" href="/admin"><i class="database icon ui orange"></i> Super Admin </a>
+      {% endif %}
+
+      {% if user.is_anonymous %}
+        <a class="item" href="{% url 'slauson:homepage' %}"><i class="home icon ui orange"></i> Home </a>
+        <a class="item" href="{% url 'slauson:register' %}"><i class="add user icon ui orange"></i> Register </a>
+        <a class="item" href="{% url 'slauson:login' %}"><i class="sign in icon ui orange"></i>Log In</a>
+      {% endif %}
+
+    <div class="right item">
+      <div class="ui input"><input type="text" placeholder="Search..."></div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="ui container">
+
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+<br>
+<div class="ui inverted vertical footer segment" style="padding: 2em">
+      <div class="ui container">
+              <div class="ui stackable inverted divided equal height stackable grid">
+                  <div class="five wide column">
+                      <h4 class="ui inverted header"> Social Links </h4>
+                      <div class="ui inverted list">
+                            <a href=""><i class="facebook square icon ui orange"></i> Facebook</a><br>
+                            <a href=""><i class="twitter square icon ui orange "></i> Twitter </a><br>
+                            <a href=""><i class="instagram icon ui orange"></i> Instagram </a><br><br>
+                      </div>
+                  </div>
+                  <div class="three wide column">
+                      <h4 class="ui inverted header"> Quick Links </h4>
+                      <div class="ui inverted list">
+
+                      </div>
+                  </div>
+
+              </div>
+              <p class=" text centered ui orange"> &copy; Copyright  Slauson Tech. 2016  </p>
+      </div>
+  </div>
+<script src="/mainsite/New%20folder/semantic/dist/semantic.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+</body>
+</html>

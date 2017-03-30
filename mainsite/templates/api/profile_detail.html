@@ -1,0 +1,16 @@
+{% load rest_framework %}
+
+<html>
+<body>
+
+<div>
+    <h1> Profile {{snippet.title}}</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {% render_form serializer %}
+        <input type="submit" value="Save">
+    </form>
+</div>
+</body>
+</html>
